@@ -2189,7 +2189,7 @@ impl<P: PhaseItem, const I: usize> RenderCommand<P> for SetMeshBindGroup<I> {
             return RenderCommandResult::Failure;
         };
 
-        let mut dynamic_offsets: [u32; 3] = Default::default();
+        let mut dynamic_offsets: [u32; 4] = Default::default();
         let mut offset_count = 0;
         if let Some(dynamic_offset) = item.extra_index().as_dynamic_offset() {
             dynamic_offsets[offset_count] = dynamic_offset.get();

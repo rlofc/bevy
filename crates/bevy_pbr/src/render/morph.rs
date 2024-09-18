@@ -78,7 +78,7 @@ const fn can_align(step: usize, target: usize) -> bool {
     step % target == 0 || target % step == 0
 }
 
-const WGPU_MIN_ALIGN: usize = 256;
+const WGPU_MIN_ALIGN: usize = 512;
 
 /// Align a [`RawBufferVec`] to `N` bytes by padding the end with `T::default()` values.
 fn add_to_alignment<T: NoUninit + Default>(buffer: &mut RawBufferVec<T>) {
