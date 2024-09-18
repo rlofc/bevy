@@ -190,19 +190,12 @@ pub fn ui_focus_system(
     let camera_cursor_positions: HashMap<Entity, Vec2> = camera_query
         .iter()
         .filter_map(|(entity, camera)| {
-            // Interactions are only supported for cameras rendering to a window.
-            let Some(NormalizedRenderTarget::Window(window_ref)) =
-                camera.target.normalize(primary_window)
-            else {
-                return None;
-            };
-
             let viewport_position = camera
                 .logical_viewport_rect()
                 .map(|rect| rect.min)
                 .unwrap_or_default();
             windows
-                .get(window_ref.entity())
+                .get(primary_window.unwrap())
                 .ok()
                 .and_then(|window| window.cursor_position())
                 .or_else(|| touches_input.first_pressed_position())
